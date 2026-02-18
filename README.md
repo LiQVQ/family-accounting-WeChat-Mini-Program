@@ -8,7 +8,7 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-[English](README.md) | 简体中文
+[English](README_en.md) | 简体中文
 
 一个简简单单的微信小程序，能够完成家庭记账。
 
