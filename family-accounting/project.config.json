@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "",
   "projectConfig": {
-    "appID": "wx112d8a922018480e",
+    "appID": "",
     "projectName": "家庭记账",
     "miniprogramRoot": "",
     "description": "家庭收支记账小程序",
@@ -62,4 +62,5 @@
     "checkCssFile": true,
     "checkJsonFile": true
   }
+
 }
