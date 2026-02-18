@@ -1,0 +1,65 @@
+<!-- pages/add/add.wxml -->
+<view class="container">
+  <view class="header">
+    <text class="header-title">添加记账</text>
+    <text class="header-subtitle">记录您的每一笔收支</text>
+  </view>
+  
+  <view class="form">
+    <view class="form-group">
+      <text class="form-label">金额</text>
+      <input 
+        type="number" 
+        placeholder="输入金额" 
+        value="{{ amount }}" 
+        bindinput="onAmountInput"
+        class="form-input"
+      />
+    </view>
+    
+    <view class="form-group">
+      <text class="form-label">类型</text>
+      <view class="type-buttons">
+        <button 
+          class="type-btn {{ type === 'income' ? 'active' : '' }}" 
+          bindtap="onTypeChange" 
+          data-type="income"
+        >收入</button>
+        <button 
+          class="type-btn {{ type === 'expense' ? 'active' : '' }}" 
+          bindtap="onTypeChange" 
+          data-type="expense"
+        >支出</button>
+      </view>
+    </view>
+    
+    <view class="form-group">
+      <text class="form-label">日期</text>
+      <picker 
+        mode="date" 
+        value="{{ date }}" 
+        start="2020-01-01" 
+        end="{{ today }}" 
+        bindchange="onDateChange"
+        class="date-picker"
+      >
+        <view class="date-display">
+          {{ date }}
+        </view>
+      </picker>
+    </view>
+    
+    <view class="form-group">
+      <text class="form-label">备注</text>
+      <input 
+        type="text" 
+        placeholder="输入备注信息" 
+        value="{{ note }}" 
+        bindinput="onNoteInput"
+        class="form-input"
+      />
+    </view>
+    
+    <button class="submit-btn" bindtap="onSubmit">添加记录</button>
+  </view>
+</view>

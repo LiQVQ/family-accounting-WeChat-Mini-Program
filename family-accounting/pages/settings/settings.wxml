@@ -1,0 +1,14 @@
+<!-- pages/settings/settings.wxml -->
+<view class="container">
+  <view class="settings-title">设置</view>
+  
+  <view class="settings-group">
+    <view class="settings-item" wx:for="{{ settings }}" wx:key="id">
+      <text class="settings-label">{{ item.name }}</text>
+      <picker mode="selector" value="{{ item.value }}" range="{{ item.options }}" range-key="name" bindchange="onSettingChange" data-id="{{ item.id }}" data-value="{{ item.value }}">
+        <!-- 修改点：移除了不可用的?.，使用三元表达式 -->
+        <view class="settings-value">{{item.options[item.value] ? item.options[item.value].name : ''}}</view>
+      </picker>
+    </view>
+  </view>
+</view>

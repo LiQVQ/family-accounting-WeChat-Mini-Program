@@ -1,0 +1,25 @@
+/* app.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+}
+
+/* 通用样式 */
+.text-center {
+  text-align: center;
+}
+
+/* 按钮样式 */
+.btn {
+  width: 90%;
+  margin: 20rpx auto;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 10rpx;
+  padding: 20rpx 0;
+  font-size: 32rpx;
+}
+
+.btn-danger {
+  background-color: #F44336;
+}

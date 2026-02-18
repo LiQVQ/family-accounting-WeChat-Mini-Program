@@ -1,0 +1,35 @@
+<!-- pages/stats/stats.wxml -->
+<view class="container">
+  <view class="chart-container">
+    <view class="chart-header">
+      <text class="chart-title">收支统计</text>
+      <view class="category-selector">
+        <block wx:for="{{ categories }}" wx:key="index">
+          <text 
+            class="category-item {{ selectedCategory === item ? 'active' : '' }}"
+            data-category="{{ item }}"
+            bindtap="onCategoryChange"
+          >
+            {{ item }}
+          </text>
+        </block>
+      </view>
+    </view>
+    <view id="chart" style="width: 100%; height: 400rpx;"></view>
+  </view>
+  
+  <view class="summary">
+    <view class="summary-item">
+      <text class="summary-label">总收入</text>
+      <text class="summary-value">{{ totalIncome }}</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-label">总支出</text>
+      <text class="summary-value">{{ totalExpense }}</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-label">结余</text>
+      <text class="summary-value" style="color: {{ balance >= 0 ? '#4CAF50' : '#F44336' }}">{{ balance }}</text>
+    </view>
+  </view>
+</view>

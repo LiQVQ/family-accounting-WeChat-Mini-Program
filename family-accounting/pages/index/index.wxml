@@ -1,0 +1,122 @@
+<!-- pages/index/index.wxml -->
+<view class="container {{ pageAnimation ? 'page-transition' : '' }}">
+  <!-- 优化后的统计卡片 -->
+  <view class="stats-card {{ statsShake ? 'shake' : '' }}">
+    <view class="stat-item">
+      <text class="stat-label">总收入</text>
+      <text class="stat-value">{{ totalIncome }}</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-label">总支出</text>
+      <text class="stat-value">{{ totalExpense }}</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-label">结余</text>
+      <text class="stat-value" style="color: {{ balance >= 0 ? '#FFC107' : '#FF5252' }}">{{ balance }}</text>
+    </view>
+  </view>
+  
+  <!-- 新增筛选区域 -->
+  <view class="filter-section">
+    <view class="filter-group">
+      <text class="filter-label">时间范围</text>
+      <view class="filter-input">
+        <picker 
+          mode="date" 
+          value="{{ startDate }}" 
+          start="2020-01-01" 
+          end="{{ endDate }}" 
+          bindchange="onStartDateChange"
+          style="width: 45%;"
+        >
+          <view class="date-picker">
+            {{ startDate }}
+          </view>
+        </picker>
+        <text style="margin: 0 10rpx; color: #999;">至</text>
+        <picker 
+          mode="date" 
+          value="{{ endDate }}" 
+          start="{{ startDate }}" 
+          end="{{ today }}" 
+          bindchange="onEndDateChange"
+          style="width: 45%;"
+        >
+          <view class="date-picker">
+            {{ endDate }}
+          </view>
+        </picker>
+      </view>
+    </view>
+    
+    <view class="filter-group">
+      <text class="filter-label">类型筛选</text>
+      <view class="filter-buttons">
+        <button 
+          class="filter-btn {{ filterType === 'all' ? 'active' : '' }}" 
+          bindtap="onFilterType" 
+          data-type="all"
+        >全部</button>
+        <button 
+          class="filter-btn {{ filterType === 'income' ? 'active' : '' }}" 
+          bindtap="onFilterType" 
+          data-type="income"
+        >收入</button>
+        <button 
+          class="filter-btn {{ filterType === 'expense' ? 'active' : '' }}" 
+          bindtap="onFilterType" 
+          data-type="expense"
+        >支出</button>
+      </view>
+    </view>
+    
+    <view class="filter-group">
+      <text class="filter-label">备注搜索</text>
+      <view class="search-input">
+        <input 
+          type="text" 
+          placeholder="输入备注关键词" 
+          value="{{ searchKeyword }}" 
+          bindinput="onSearchInput"
+        />
+      </view>
+    </view>
+    
+    <view class="filter-group">
+      <button class="clear-filter-btn" bindtap="onClearFilters">
+        清除筛选
+      </button>
+    </view>
+  </view>
+  
+  <!-- 记账记录列表 -->
+  <view class="records-list">
+    <block wx:for="{{ filteredRecords }}" wx:key="id">
+      <view class="record-item {{ item.isDeleting ? 'fade-out' : '' }}" wx:if="{{ item.id }}">
+        <view class="record-header">
+          <text class="record-type" style="background: {{ item.type === 'income' ? 'rgba(76, 175, 80, 0.3)' : 'rgba(244, 67, 54, 0.3)' }}">
+            {{ item.type === 'income' ? '↑' : '↓' }}
+          </text>
+          <text class="record-date">{{ item.date }}</text>
+        </view>
+        <view class="record-content">
+          <view class="record-amount" style="color: {{ item.type === 'income' ? '#4CAF50' : '#F44336' }}">
+            {{ item.type === 'income' ? '+' : '-' }}{{ item.amount }}
+          </view>
+          <view class="record-note">{{ item.note }}</view>
+        </view>
+        <view class="record-actions">
+          <button class="action-btn" bindtap="onDeleteRecord" data-id="{{ item.id }}">删除</button>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{ filteredRecords.length === 0 }}" class="empty-state">
+      暂无符合筛选条件的记账记录
+    </view>
+  </view>
+  
+  <!-- 添加按钮 -->
+  <view class="add-btn" bindtap="onAddRecord">
+    <text style="color: white; font-size: 52rpx;">+</text>
+  </view>
+</view>
